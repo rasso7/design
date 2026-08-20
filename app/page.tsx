@@ -34,16 +34,38 @@ export default function Home() {
             width: 100% !important;
             flex: unset !important;
             margin-top: 24px;
+            margin-left: 0 !important;
+            justify-content: flex-end !important;
           }
           .hero-center img {
-            width: 280px !important;
-            height: 280px !important;
+            width: 380px !important;
+            height: 380px !important;
           }
-          .right-annotations { display: none !important; }
+          .right-annotations {
+            position: relative !important;
+            right: unset !important;
+            top: unset !important;
+            bottom: unset !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-end !important;
+            justify-content: space-between !important;
+            width: 100% !important;
+            height: 360px !important;
+            margin-top: -380px !important;
+            order: 3;
+            pointer-events: none;
+            padding: 8px 0 8px 0 !important;
+            box-sizing: border-box !important;
+          }
+          .right-annotations p {
+            font-size: 9px !important;
+            letter-spacing: 0.06em !important;
+          }
           .email-cta input { width: 150px !important; }
         }
         @media (min-width: 1280px) {
-          .nav-bar { padding: 0 160px !important; }
+          .nav-bar { padding: 0 128px !important; }
         }
       `}</style>
 
@@ -52,7 +74,7 @@ export default function Home() {
         className="nav-bar"
         style={{
           background: "#f0f0eb",
-          padding: "0 80px",
+          padding: "0 48px",
         }}
       >
         <div
@@ -328,9 +350,9 @@ export default function Home() {
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "8px" }}>
             <div style={{ display: "flex", alignItems: "center" }}>
               {[
-                { src: "/naziya.jpeg", alt: "Naziya" },
-                { src: "/rashid.jpg", alt: "Rashid" },
-                { src: "/wasit.jpg", alt: "Wasit" },
+                { src: "/Naziya.jpeg", alt: "Naziya" },
+                { src: "/Rashid.jpg", alt: "Rashid" },
+                { src: "/Wasit.jpg", alt: "Wasit" },
               ].map((person, i) => (
                 <div
                   key={i}
@@ -382,7 +404,6 @@ export default function Home() {
       >
         <style>{`
           .wwd-card {
-            background: #fff;
             border-radius: 16px;
             border: 1px solid #e8e8e0;
             padding: 28px 24px 24px 24px;
@@ -390,15 +411,45 @@ export default function Home() {
             flex-direction: column;
             flex: 1;
             min-width: 0;
+            min-height: 320px;
+            position: relative;
+            overflow: hidden;
             transition: box-shadow 0.2s, transform 0.2s;
           }
+          .wwd-card-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+          }
+          .wwd-card-bg img {
+            object-fit: cover;
+            width: 100% !important;
+            height: 100% !important;
+            position: absolute !important;
+            inset: 0;
+          }
+          .wwd-card-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(160deg, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0.55) 55%, rgba(255,255,255,0.18) 100%);
+          }
+          .wwd-card.active .wwd-card-overlay {
+            background: linear-gradient(160deg, rgba(249,253,230,0.88) 0%, rgba(249,253,230,0.60) 55%, rgba(249,253,230,0.20) 100%);
+          }
+          .wwd-card-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+          }
           .wwd-card:hover {
-            box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.14);
             transform: translateY(-4px);
           }
           .wwd-card.active {
             border: 2px solid #b8d400;
-            background: #f9fde6;
           }
           .wwd-learn {
             color: #7b2ff7;
@@ -482,38 +533,32 @@ export default function Home() {
         >
           {/* Card 1 – NLP */}
           <div className="wwd-card">
-            <span style={{ color: "#aaa", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", marginBottom: "8px" }}>01</span>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
-              <span style={{ fontSize: "20px", fontWeight: 700, color: "#1c1c1c", letterSpacing: "0.04em" }}>NLP</span>
-              <span style={{ color: "#7b2ff7", fontSize: "16px", fontWeight: 700 }}>✦</span>
+            <div className="wwd-card-bg">
+              <Image src="/Nlp.png" alt="NLP illustration" fill style={{ objectFit: "cover" }} />
             </div>
-            <div style={{ borderRadius: "12px", overflow: "hidden", marginBottom: "20px", width: "100%", aspectRatio: "4/3", position: "relative" }}>
-              <Image
-                src="/Nlp.png"
-                alt="NLP illustration"
-                fill
-                style={{ objectFit: "cover", borderRadius: "12px" }}
-              />
+            <div className="wwd-card-overlay" />
+            <div className="wwd-card-content">
+              <span style={{ color: "#aaa", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", marginBottom: "8px" }}>01</span>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
+                <span style={{ fontSize: "20px", fontWeight: 700, color: "#1c1c1c", letterSpacing: "0.04em" }}>NLP</span>
+                <span style={{ color: "#7b2ff7", fontSize: "16px", fontWeight: 700 }}>✦</span>
+              </div>
+              <div style={{ flex: 1 }} />
+              <p style={{ color: "#444", fontSize: "13.5px", lineHeight: 1.65, margin: "0" }}>
+                Understand, analyze and generate human like language.
+              </p>
+              <a className="wwd-learn" href="#">LEARN MORE →</a>
             </div>
-            <p style={{ color: "#555", fontSize: "13.5px", lineHeight: 1.65, margin: "0" }}>
-              Understand, analyze and generate human like language.
-            </p>
-            <a className="wwd-learn" href="#">LEARN MORE →</a>
           </div>
 
           {/* Card 2 – Multimodal */}
-          <div className="wwd-card">
+          <div className="wwd-card" style={{ background: "#fff" }}>
             <span style={{ color: "#aaa", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", marginBottom: "8px" }}>02</span>
             <div style={{ marginBottom: "16px" }}>
               <span style={{ fontSize: "20px", fontWeight: 700, color: "#1c1c1c", letterSpacing: "0.04em" }}>MULTIMODAL</span>
             </div>
             <div style={{ borderRadius: "12px", overflow: "hidden", marginBottom: "20px", width: "100%", aspectRatio: "4/3", position: "relative" }}>
-              <Image
-                src="/multimodal.png"
-                alt="Multimodal illustration"
-                fill
-                style={{ objectFit: "cover", borderRadius: "12px" }}
-              />
+              <Image src="/multimodal.png" alt="Multimodal illustration" fill style={{ objectFit: "cover", borderRadius: "12px" }} />
             </div>
             <p style={{ color: "#555", fontSize: "13.5px", lineHeight: 1.65, margin: "0" }}>
               Combine text, image, audio and more for smarter outputs.
@@ -522,18 +567,13 @@ export default function Home() {
           </div>
 
           {/* Card 3 – Vision (active/highlighted) */}
-          <div className="wwd-card active">
+          <div className="wwd-card active" style={{ background: "#f9fde6" }}>
             <span style={{ color: "#8fc400", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", marginBottom: "8px" }}>03</span>
             <div style={{ marginBottom: "16px" }}>
               <span style={{ fontSize: "20px", fontWeight: 700, color: "#8fc400", letterSpacing: "0.04em" }}>VISION</span>
             </div>
             <div style={{ borderRadius: "12px", overflow: "hidden", marginBottom: "20px", width: "100%", aspectRatio: "4/3", position: "relative" }}>
-              <Image
-                src="/vison.jpeg"
-                alt="Vision illustration"
-                fill
-                style={{ objectFit: "cover", borderRadius: "12px" }}
-              />
+              <Image src="/vison.jpeg" alt="Vision illustration" fill style={{ objectFit: "cover", borderRadius: "12px" }} />
             </div>
             <p style={{ color: "#555", fontSize: "13.5px", lineHeight: 1.65, margin: "0" }}>
               See more. Detect, recognize and extract with precision.
@@ -542,18 +582,13 @@ export default function Home() {
           </div>
 
           {/* Card 4 – Automation */}
-          <div className="wwd-card">
+          <div className="wwd-card" style={{ background: "#fff" }}>
             <span style={{ color: "#aaa", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", marginBottom: "8px" }}>04</span>
             <div style={{ marginBottom: "16px" }}>
               <span style={{ fontSize: "20px", fontWeight: 700, color: "#1c1c1c", letterSpacing: "0.04em" }}>AUTOMATION</span>
             </div>
             <div style={{ borderRadius: "12px", overflow: "hidden", marginBottom: "20px", width: "100%", aspectRatio: "4/3", position: "relative" }}>
-              <Image
-                src="/automation.png"
-                alt="Automation illustration"
-                fill
-                style={{ objectFit: "cover", borderRadius: "12px" }}
-              />
+              <Image src="/automation.png" alt="Automation illustration" fill style={{ objectFit: "cover", borderRadius: "12px" }} />
             </div>
             <p style={{ color: "#555", fontSize: "13.5px", lineHeight: 1.65, margin: "0" }}>
               Automate workflows and scale operations effortlessly.
@@ -562,18 +597,13 @@ export default function Home() {
           </div>
 
           {/* Card 5 – Security */}
-          <div className="wwd-card">
+          <div className="wwd-card" style={{ background: "#fff" }}>
             <span style={{ color: "#aaa", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", marginBottom: "8px" }}>05</span>
             <div style={{ marginBottom: "16px" }}>
               <span style={{ fontSize: "20px", fontWeight: 700, color: "#1c1c1c", letterSpacing: "0.04em" }}>SECURITY</span>
             </div>
             <div style={{ borderRadius: "12px", overflow: "hidden", marginBottom: "20px", width: "100%", aspectRatio: "4/3", position: "relative" }}>
-              <Image
-                src="/security.jpeg"
-                alt="Security illustration"
-                fill
-                style={{ objectFit: "cover", borderRadius: "12px" }}
-              />
+              <Image src="/security.jpeg" alt="Security illustration" fill style={{ objectFit: "cover", borderRadius: "12px" }} />
             </div>
             <p style={{ color: "#555", fontSize: "13.5px", lineHeight: 1.65, margin: "0" }}>
               Enterprise grade security for your AI powered systems.
