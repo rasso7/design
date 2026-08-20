@@ -63,6 +63,7 @@ export default function Home() {
             letter-spacing: 0.06em !important;
           }
           .email-cta input { width: 150px !important; }
+          .hero-shadow { transform: translateX(-62%) !important; bottom: 14px !important; }
         }
         @media (min-width: 1280px) {
           .nav-bar { padding: 0 128px !important; }
@@ -309,6 +310,22 @@ export default function Home() {
             height={620}
             style={{ objectFit: "contain" }}
             priority
+          />
+          {/* Bottom shadow */}
+          <div
+            className="hero-shadow"
+            style={{
+              position: "absolute",
+              bottom: "-5px",
+              left: "50%",
+              transform: "translateX(-72%)",
+              width: "70%",
+              height: "40px",
+              borderRadius: "50%",
+              background: "radial-gradient(ellipse at center, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0) 75%)",
+              pointerEvents: "none",
+              zIndex: 1,
+            }}
           />
         </div>
 
