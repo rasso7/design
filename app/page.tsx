@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div
-      style={{ background: "#f0f0eb", minHeight: "100vh", fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
+      style={{ background: "#fffffdff", minHeight: "100vh", fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}
     >
       <style>{`
         @media (max-width: 768px) {
@@ -74,7 +74,7 @@ export default function Home() {
       <nav
         className="nav-bar"
         style={{
-          background: "#f0f0eb",
+          background: "#fffffd",
           padding: "0 48px",
         }}
       >
@@ -414,7 +414,7 @@ export default function Home() {
       {/* WHAT WE DO SECTION */}
       <section
         style={{
-          background: "#f8f8f4",
+          background: "#fffffd",
           padding: "60px 48px 72px 48px",
           fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
         }}
